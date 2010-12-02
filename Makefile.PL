@@ -13,13 +13,11 @@ test_requires 'Test::LeakTrace' => 0.08;
 tests 't/*.t t/*/*.t';
 author_tests 'xt';
 
-WriteMakefile(
-	OBJECT => '$(O_FILES)',
+clean_files q{
+    B-Foreach-Iterator-* *.stackdump
+    *.gcda *.gcno *.gcov
+    nytprof *.out
+    cover_db
+};
 
-	clean  => {FILES => q(
-		B-Foreach-Iterator-* *.stackdump
-		*.gcda *.gcno *.gcov
-		nytprof *.out
-		cover_db
-	)},
-);
+WriteAll(check_nmake => 0);
