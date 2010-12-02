@@ -14,10 +14,12 @@
 #define CxFOREACH(cx) (CxTYPE(cx) == CXt_LOOP && CxITERVAR(cx) != NULL)
 #endif
 
+#ifndef CX_LOOP_NEXTOP_GET
 #if PERL_BCDVERSION >= 0x5013005
 #define CX_LOOP_NEXTOP_GET(cx) ((cx)->blk_loop.my_op->op_nextop)
 #else
 #define CX_LOOP_NEXTOP_GET(cx) ((cx)->blk_loop.next_op)
+#endif
 #endif
 
 #ifdef CXt_LOOP_FOR /* >= 5.11 */
